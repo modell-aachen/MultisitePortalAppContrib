@@ -10,25 +10,19 @@ our $RELEASE = "1";
 
 our $SHORTDESCRIPTION = 'Modell Aachen Portal WikiApp';
 
-sub initPlugin {
-    my ( $topic, $web, $user, $installWeb ) = @_;
+sub maintenanceHandler {
+    Foswiki::Plugins::MaintenancePlugin::registerCheck("MultisitePortalAppContrib:Move to MultisitePortalAppPlugin", {
+        name => "Move to more recent MultisitePortalAppPlugin",
+        description => "Uninstall MultisitePortalAppContrib and install MultisitePortalAppPlugin",
+        check => sub {
+            return {
+                result => 1,
+                priority => $Foswiki::Plugins::MaintenancePlugin::ERROR,
+                solution => "Please uninstall MultisitePortalAppContrib using the AppManager (or similar) and install the more recent MultisitePortalAppPlugin"
+            }
 
-    Foswiki::Func::registerTagHandler(
-        'PORTALTOKENS', \&_tagPortalTokens );
-}
-
-sub _tagPortalTokens {
-    my ( $session, $attributes, $topic, $web, $meta ) = @_;
-
-    my $clientId = "Portal_" . substr(md5_hex(rand), -6);
-    my $clientToken = Foswiki::Plugins::VueJSPlugin::registerClient( $clientId );
-
-    # Specialcase for multisitePortalApp: only generate a required token
-    return sprintf(
-        ' data-vue-client-id="%s" data-vue-client-token="%s" ',
-        $clientId,
-        $clientToken
-    );
+        }
+    });
 }
 
 
