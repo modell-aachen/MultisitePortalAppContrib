@@ -3,10 +3,5 @@ import WebTile from './components/WebTile.vue'
 import $ from 'jquery'
 
 $( function () {
-    new Vue({
-        el: '.portal',
-        components: {
-            webTile: WebTile
-        }
-    })
+    Vue.instantiateEach( '.portal', { components: { webTile: WebTile } });
 })

@@ -10,6 +10,23 @@ our $RELEASE = "1";
 
 our $SHORTDESCRIPTION = 'Modell Aachen Portal WikiApp';
 
+sub maintenanceHandler {
+    Foswiki::Plugins::MaintenancePlugin::registerCheck("MultisitePortalAppContrib:Move to MultisitePortalAppPlugin", {
+        name => "Move to more recent MultisitePortalAppPlugin",
+        description => "Uninstall MultisitePortalAppContrib and install MultisitePortalAppPlugin",
+        check => sub {
+            return {
+                result => 1,
+                priority => $Foswiki::Plugins::MaintenancePlugin::ERROR,
+                solution => "Please uninstall MultisitePortalAppContrib using the AppManager (or similar) and install the more recent MultisitePortalAppPlugin"
+            }
+
+        }
+    });
+}
+
+
+
 1;
 
 __END__

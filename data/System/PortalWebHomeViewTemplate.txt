@@ -3,7 +3,7 @@
 
 %TMPL:DEF{"top_simple"}%
   <div class="patternTop"><div id="modacHeading">%MAKETEXT{%TOPICTITLE%}%</div></div>
-%TMPL:END% 
+%TMPL:END%
 
 %TMPL:DEF{"content"}%
 %VUE{VERSION="2"}%
@@ -36,7 +36,7 @@
   text="<link rel='stylesheet' href='%PUBURLPATH%/System/FlatSkin/css/flatskin_wrapped.min.css' />"
 }%
 
-<div class="portal flatskin-wrapped">
+<div class="portal flatskin-wrapped" %PORTALTOKENS%>
   <div class="globalreq">
     <div class="widgetBlockTitle">%MAKETEXT{"Global Requirements"}%</div>
     <div class="expanded row medium-up-2 xlarge-up-2 xxxlarge-up-3 xxxxlarge-up-4">
