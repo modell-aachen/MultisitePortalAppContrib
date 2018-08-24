@@ -3,7 +3,7 @@
 
 %TMPL:DEF{"top_simple"}%
   <div class="patternTop"><div id="modacHeading">%MAKETEXT{%TOPICTITLE%}%</div></div>
-%TMPL:END% 
+%TMPL:END%
 
 %TMPL:DEF{"content"}%
 %VUE{VERSION="2"}%
@@ -36,12 +36,12 @@
   text="<link rel='stylesheet' href='%PUBURLPATH%/System/FlatSkin/css/flatskin_wrapped.min.css' />"
 }%
 
-<div class="portal flatskin-wrapped">
+<div class="portal flatskin-wrapped" %PORTALTOKENS%>
   <div class="globalreq">
     <div class="widgetBlockTitle">%MAKETEXT{"Global Requirements"}%</div>
     <div class="expanded row medium-up-2 xlarge-up-2 xxxlarge-up-3 xxxxlarge-up-4">
       %FLEXWEBLIST{
-         include="%FLEXWEBLIST{subwebs="none" separator="|" format="$percentIF{\"'$percentWEBPREF{\"MULTISITE_ISPUBLICATIONWEB\" alt=\"-1\" web=\"$name\"}$percent' = '1' \" then=\"$name\" else=\"none\"}$percent"}%"
+         include="%FLEXWEBLIST{subwebs="none" separator="|" format="$percentIF{\"'$percentWEBPREF{\"MULTISITE_ISPUBLICATIONWEB\" alt=\"-1\" web=\"$name\"}$percent' = '1' \" then=\"$name(?:/.*)?\" else=\"none\"}$percent"}%"
          exclude="OUTemplate"
          format="<web-tile :web=\"'$percentFORMATLIST{\"$map($web)\" map=\"%MODAC_WEBMAPPINGS{default=""}%\"}$percent'\" :weblink=\"'/$web'\" :globalreq=\"'$percentFORMATLIST{\"$map($percentENCODE{\"$percentWEBPREF{\"MULTISITE_GLOBALREQUIREMENTS\" web=\"$name\"}$percent\" type=\"entity\" }$percent)\" map=\"%MODAC_WEBMAPPINGS{default=""}%\"}$percent'\"  :sitelogo=\"'%ENCODE{"%WIKILOGOIMG%" type="entity"}%'\" :weblogo=\"'$percentENCODE{\"$percentWEBPREF{\"WIKILOGOIMG\" web=\"$name\"}$percent\" type=\"entity\"}$percent'\" :subwebs=\"["
          header=""
@@ -59,7 +59,7 @@
     <div class="widgetBlockTitle">%MAKETEXT{"Local Requirements"}%</div>
     <div class="expanded row medium-up-2 xlarge-up-2 xxxlarge-up-3 xxxxlarge-up-4">
       %FLEXWEBLIST{
-         include="%FLEXWEBLIST{subwebs="none" separator="|" format="$percentIF{\"'$percentWEBPREF{\"MULTISITE_ISPUBLICATIONWEB\" alt=\"-1\" web=\"$name\"}$percent' = '0' \" then=\"$name\" else=\"none\"}$percent"}%"
+         include="%FLEXWEBLIST{subwebs="none" separator="|" format="$percentIF{\"'$percentWEBPREF{\"MULTISITE_ISPUBLICATIONWEB\" alt=\"-1\" web=\"$name\"}$percent' = '0' \" then=\"$name(?:/.*)?\" else=\"none\"}$percent"}%"
          exclude="OUTemplate"
          format="<web-tile :web=\"'$percentFORMATLIST{\"$map($web)\" map=\"%MODAC_WEBMAPPINGS{default=""}%\"}$percent'\" :weblink=\"'/$web'\" :globalreq=\"'$percentFORMATLIST{\"$map($percentENCODE{\"$percentWEBPREF{\"MULTISITE_GLOBALREQUIREMENTS\" web=\"$name\"}$percent\" type=\"entity\" }$percent)\" map=\"%MODAC_WEBMAPPINGS{default=""}%\"}$percent'\"  :sitelogo=\"'%ENCODE{"%WIKILOGOIMG%" type="entity"}%'\" :weblogo=\"'$percentENCODE{\"$percentWEBPREF{\"WIKILOGOIMG\" web=\"$name\"}$percent\" type=\"entity\"}$percent'\" :subwebs=\"["
          header=""
